@@ -1,6 +1,8 @@
 package com.example.week7.week7learning;
 
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -36,10 +38,25 @@ class Week7LearningApplicationTests {
     static void lastTest(){
         log.info("jaadu ja raha hai sone");
     }
+
     @Test
     @DisplayName("displayNameTestTwo")
     void testNumber2(){
 
+        int a = 5;
+        int b = 6;
+
+        int result = add2Number(5,6);
+
+//        Assertions.assertEquals(8, result);
+
+        Assertions.assertThat(result).isEqualTo(8).isCloseTo(7, Offset.offset(1));
+
+
+    }
+
+    int add2Number(int a, int b){
+        return a+b;
     }
 
 }
