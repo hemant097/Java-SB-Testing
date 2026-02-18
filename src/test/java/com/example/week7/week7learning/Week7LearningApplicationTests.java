@@ -6,6 +6,8 @@ import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @Slf4j
 @SpringBootTest
 class Week7LearningApplicationTests {
@@ -46,12 +48,12 @@ class Week7LearningApplicationTests {
         int a = 5;
         int b = 6;
 
-        int result = add2Number(5,6);
+        int result = add2Number(a,b);
 
 //        Assertions.assertEquals(8, result);
-
-        Assertions.assertThat(result).isEqualTo(8).isCloseTo(7, Offset.offset(1));
-
+                assertThat(result)
+                        .isEqualTo(8)
+                        .isCloseTo(7, Offset.offset(1));
 
     }
 
