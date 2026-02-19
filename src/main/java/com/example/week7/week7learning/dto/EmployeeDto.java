@@ -1,5 +1,8 @@
 package com.example.week7.week7learning.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +16,13 @@ import java.util.Objects;
 @AllArgsConstructor
 public class EmployeeDto {
     private Long id;
+
+    @Email
     private String email;
+    @NotBlank
     private String name;
+
+    @Min(value = 1000, message = "salary cannot be lower than 1000")
     private Long salary;
 
     @Override
