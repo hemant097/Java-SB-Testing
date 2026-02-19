@@ -13,6 +13,7 @@ public class TestContainerConfiguration {
 @Bean
     @ServiceConnection
     PostgreSQLContainer<?> postgreContainer(){
-    return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
+    return new PostgreSQLContainer<>(DockerImageName
+            .parse("postgres:latest"));
 }
 }

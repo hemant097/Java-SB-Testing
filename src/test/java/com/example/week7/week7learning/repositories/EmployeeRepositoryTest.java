@@ -16,17 +16,16 @@ import java.util.List;
 import java.util.TimeZone;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Slf4j
-@Import(TestContainerConfiguration.class)
+//@Import(TestContainerConfiguration.class)
 @DataJpaTest //auto-configures an embedded DB for us if present
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class EmployeeRepositoryTest {
 
-
     @Autowired
     private EmployeeRepository employeeRepository;
-
     private Employee employee;
 
     @BeforeAll
@@ -34,9 +33,8 @@ class EmployeeRepositoryTest {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 
-
     @BeforeEach
-    void setUp(){
+    void setUpCreateEmployee(){
         employee = Employee.builder()
                 .email("abc@outlook.com")
                 .salary(1500L)
@@ -50,14 +48,11 @@ class EmployeeRepositoryTest {
         System.out.println("user.timezone: " + System.getProperty("user.timezone"));
     }
 
-
-
     @Test
     void testFindByEmail_whenEmailIsPresent_thenReturnEmployee(){
 
         //ARRANGE
         employeeRepository.save(employee);
-
         //ACT
          List<Employee> employeeList = employeeRepository.findByEmail(employee.getEmail());
 
@@ -82,5 +77,24 @@ class EmployeeRepositoryTest {
         assertThat(employeeList).isNotNull();
         assertThat(employeeList).isEmpty();
 
+    }
+
+    @Test
+    void testDivideTwoNumbers_whenDenominatorIsZero_ThenArithmeticException(){
+        int a = 5, b = 0;
+
+        assertThatThrownBy(() -> divideTwoNumbers(a,b))
+                .isInstanceOf(ArithmeticException.class)
+                .hasMessageContaining("zero");
+    }
+
+    int divideTwoNumbers (int a, int b){
+        try {
+            return a/b;
+        }
+        catch (ArithmeticException exp){
+            log.error("arithemetic exception occured : "+exp.getLocalizedMessage());
+            throw exp;
+        }
     }
 }
