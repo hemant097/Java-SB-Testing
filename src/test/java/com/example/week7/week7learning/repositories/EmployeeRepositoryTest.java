@@ -1,5 +1,6 @@
 package com.example.week7.week7learning.repositories;
 
+import com.example.week7.week7learning.TestContainerConfiguration;
 import com.example.week7.week7learning.entities.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 
 import java.time.ZoneId;
 import java.util.List;
@@ -18,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @Slf4j
-//@Import(TestContainerConfiguration.class)
+@Import(TestContainerConfiguration.class)
 @DataJpaTest //auto-configures an embedded DB for us if present
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class EmployeeRepositoryTest {
