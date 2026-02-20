@@ -46,7 +46,7 @@ class Week7LearningApplicationTests {
     void testNumber2(){
 
         int a = 5;
-        int b = 6;
+        int b = 3;
 
         int result = add2Number(a,b);
 

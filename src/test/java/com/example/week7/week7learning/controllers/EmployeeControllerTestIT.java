@@ -1,37 +1,23 @@
 package com.example.week7.week7learning.controllers;
 
-import com.example.week7.week7learning.TestContainerConfiguration;
 import com.example.week7.week7learning.dto.EmployeeDto;
 import com.example.week7.week7learning.entities.Employee;
 import com.example.week7.week7learning.repositories.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.TimeZone;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @Slf4j
-@Import(TestContainerConfiguration.class)
-@AutoConfigureWebTestClient(timeout = "100000")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) //as we want to run real server
-class EmployeeControllerTestIT {
 
-    @Autowired
-    private WebTestClient webTestClient;
+class EmployeeControllerTestIT extends AbstractIntegrationTest {
+
+
     @Autowired
     private EmployeeRepository employeeRepository;
-    private Employee testEmployee;
-    private EmployeeDto testEmployeeDto;
-
 
     @BeforeAll
     static void setTimezone() {
@@ -40,19 +26,7 @@ class EmployeeControllerTestIT {
 
     @BeforeEach
     void setUp(){
-        testEmployee = Employee.builder()
-                .email("alphapandey@yahoo.com")
-                .salary(16363L)
-                .name("Alpha Pandey")
-                .build();
-        testEmployeeDto = EmployeeDto.builder()
-                .email("alphapandey@yahoo.com")
-                .salary(16363L)
-                .name("Alpha Pandey")
-                .build();
-
         employeeRepository.deleteAll();
-
     }
 
     @Test
@@ -87,15 +61,14 @@ class EmployeeControllerTestIT {
 
     @Test
     void testCreateNewEmployee_whenAlreadyExists_thenThrowException(){
-        Employee savedEmployee = employeeRepository.save(testEmployee);
+
+        employeeRepository.save(testEmployee);
 
         webTestClient.post()
                 .uri("/employees")
                 .bodyValue(testEmployeeDto)
                 .exchange()
                 .expectStatus().is5xxServerError();
-
-
 
     }
 
@@ -185,8 +158,7 @@ class EmployeeControllerTestIT {
         webTestClient.delete()
                 .uri("/employees/{id}",savedEmployee.getId())
                 .exchange()
-                .expectStatus().isNotFound()
-        ;
+                .expectStatus().isNotFound();
     }
 
 
