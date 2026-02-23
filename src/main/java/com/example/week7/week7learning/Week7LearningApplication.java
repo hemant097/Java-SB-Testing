@@ -1,13 +1,24 @@
 package com.example.week7.week7learning;
 
+import com.example.week7.week7learning.services.DataService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Week7LearningApplication {
+@RequiredArgsConstructor
+public class Week7LearningApplication implements CommandLineRunner {
+
+    private final DataService dataService;
 
     public static void main(String[] args) {
         SpringApplication.run(Week7LearningApplication.class, args);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+
+        System.out.println("the data is "+dataService.getData());
+    }
 }
