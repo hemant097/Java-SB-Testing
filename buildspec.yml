@@ -10,7 +10,7 @@ phases:
       - mvn package -DskipTests
   post_build:
     commands:
-      -echo Build, testing and packaging completed
+      - echo Build, testing and packaging completed
 
 artifacts:
   files:
