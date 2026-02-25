@@ -14,7 +14,7 @@ public class Week7LearningApplication implements CommandLineRunner {
     @Value("${my.variable}")
     private String myVariable;
 
-    private final DataService dataService;
+//    private final DataService dataService;
 
     public static void main(String[] args) {
         SpringApplication.run(Week7LearningApplication.class, args);
@@ -25,6 +25,6 @@ public class Week7LearningApplication implements CommandLineRunner {
 
         System.out.println("my variable is :"+myVariable);
 
-        System.out.println("the data is "+dataService.getData());
+//        System.out.println("the data is "+dataService.getData());
     }
 }
