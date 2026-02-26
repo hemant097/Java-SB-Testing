@@ -20,9 +20,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @Slf4j
-@Import(TestContainerConfiguration.class)
+//@Import(TestContainerConfiguration.class)
 @DataJpaTest //auto-configures an embedded DB for us if present
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class EmployeeRepositoryTest {
 
     @Autowired
