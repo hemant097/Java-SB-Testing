@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import javax.sql.DataSource;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.TimeZone;
@@ -20,14 +21,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @Slf4j
-//@Import(TestContainerConfiguration.class)
+@Import(TestContainerConfiguration.class)
 @DataJpaTest //auto-configures an embedded DB for us if present
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class EmployeeRepositoryTest {
 
     @Autowired
     private EmployeeRepository employeeRepository;
     private Employee employee;
+
+    @Autowired
+    DataSource ds;
+
+    @Test
+    void checkUrl() throws Exception {
+        System.out.println(ds.getConnection().getMetaData().getURL());
+    }
 
     @BeforeAll
     static void setTimezone() {
