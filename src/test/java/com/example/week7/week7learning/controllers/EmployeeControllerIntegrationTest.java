@@ -13,7 +13,7 @@ import java.util.TimeZone;
 
 @Slf4j
 
-class EmployeeControllerTestIT extends AbstractIntegrationTest {
+class EmployeeControllerIntegrationTest extends AbstractIntegrationTest {
 
 
     @Autowired
