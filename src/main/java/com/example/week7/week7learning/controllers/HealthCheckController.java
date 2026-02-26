@@ -10,6 +10,6 @@ public class HealthCheckController {
 
     @GetMapping(path = "/")
     ResponseEntity<String> healthCheck(){
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok("OK, application is working fine with elastic beanstalk, rds, and codepipeline");
     }
 }
