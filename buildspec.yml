@@ -4,6 +4,10 @@ phases:
   install:
     runtime-versions:
       java: corretto21
+
+  pre_build:
+    commands:
+      - docker info  # verify docker is accessible
   build:
     commands:
       - echo Building, Testing and packaging the application
