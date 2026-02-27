@@ -25,6 +25,8 @@ public class EmployeeDto {
     @Min(value = 1000, message = "salary cannot be lower than 1000")
     private Long salary;
 
+    private String dptTitle;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

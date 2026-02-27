@@ -15,23 +15,7 @@ import java.util.TimeZone;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Slf4j
-@SpringBootTest
-@Import(TestContainerConfiguration.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class Week7LearningApplicationTests {
-
-    @Autowired
-    DataSource ds;
-
-    @Test
-    void checkUrl() throws Exception {
-        System.out.println(ds.getConnection().getMetaData().getURL());
-    }
-
-    @BeforeAll
-    static void setTimezone() {
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-    }
 
     @Test
         //    @Disabled
